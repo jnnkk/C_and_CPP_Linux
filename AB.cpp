@@ -5,7 +5,7 @@ using namespace std;
 
 struct DATA // 구조체선언
 {
-    long long item, count;
+    long long item, count; // item: 현재 숫자, count: 연산 횟수, long long: int보다 큰 정수형 int하니까 오버플로우 남
 };
 
 int main() {
