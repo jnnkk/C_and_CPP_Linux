@@ -1,16 +1,16 @@
 #include <iostream>
-#include <queue>
+#include <queue> // 큐 쓰려면 헤더파일 불러와야 함
 
 using namespace std;
 
-struct DATA
+struct DATA // 구조체선언
 {
     long long item, count;
 };
 
 int main() {
     long long a, b;
-    queue<DATA> q;
+    queue<DATA> q; // 큐 선언
 
     cin >> a >> b;
 
