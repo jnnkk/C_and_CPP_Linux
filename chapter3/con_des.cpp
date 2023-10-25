@@ -34,3 +34,20 @@ int main() {
 }
 
 Test g('g');
+
+/*
++b
++d
++e
++g
++c
++a
+-a
+-c
++f
+-f
+-g
+-e
+-d
+-b
+*/
