@@ -18,9 +18,12 @@ Circle::Circle() {
 int main() {
     int n;
     int count = 0;
+
     cout << "생성하고자 하는 원의 개수 >> ";
     cin >> n;
+
     Circle *p = new Circle[n];
+    
     for (int i = 0; i < n; i++){
         cout << "원 " << i+1 << "의 반지름 >> " << endl;
         int r;
