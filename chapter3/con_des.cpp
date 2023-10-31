@@ -33,7 +33,7 @@ int main() {
     Test f('f');
 }
 
-Test g('g');
+Test g('g'); // 프로그램 다읽고 main 실행 되서 이게 main에 있는 거 보다 먼저 실행
 
 /*
 +b
