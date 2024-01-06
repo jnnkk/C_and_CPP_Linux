@@ -49,6 +49,7 @@ int main(int argc, char** argv) {
         for (int j = 1; j <= i; j++) {
             if (i != j && map_count + 1 <= 10000) {
                 map[map_count].push_back(map_count + 1);
+                map[map_count + 1].push_back(map_count);
             }
             if (map_count + i <= 10000) {
                 map[map_count].push_back(map_count + i);
@@ -66,6 +67,14 @@ int main(int argc, char** argv) {
         }
     }
 
+    for (int i = 1 ; i <= 10000; i++) {
+        cout << i << " : ";
+        for (auto j : map[i]) {
+            cout << j << " ";
+        }
+        cout << endl;
+    }
+
     cin >> T;
 
     for(test_case = 1; test_case <= T; ++test_case) {
@@ -73,12 +82,12 @@ int main(int argc, char** argv) {
         cin >> s >> e;
 
         if (s == e) {
-            cout << "#" << test_case << " " << 0 << "\n";
+            cout << "#" << test_case << " " << 0 << endl;
             continue;
         }
 
         int count = BFS(map, min(s, e), max(s, e));
-        cout << "#" << test_case << " " << count << "\n";
+        cout << "#" << test_case << " " << count << endl;
     }
     return 0;
 }
