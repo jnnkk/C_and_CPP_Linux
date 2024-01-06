@@ -1,50 +1,17 @@
 #include <iostream>
-#include <vector>
-#include <queue>
-#include <unordered_set>
 
 using namespace std;
 
-int BFS(vector<int> map[], int s, int e) {
-    queue<int> BFS_q;
-    unordered_set<int> visited; // 시간 줄이기 위해 set 사용
-    int count = 0;
+int algorithm(int s, int e, int* mapmap) { // s < e, 거리 계산 알고리즘
 
-    BFS_q.push(s);
-    visited.insert(s);
-
-    while (!BFS_q.empty()) {
-        int size = BFS_q.size();
-        count++;
-
-        for (int i = 0; i < size; i++) {
-            int n = BFS_q.front();
-            BFS_q.pop();
-
-            for (auto j : map[n]) {
-                if (visited.find(j) == visited.end()) {
-                    if (j == e) {
-                        return count;
-                    }
-                    BFS_q.push(j);
-                    visited.insert(j);
-                }
-            }
-        }
-    }
-    return 0;
-}
-
-int Pyenbup(int s, int e, int* mapmap) {
-
-    int s_pos = mapmap[s];
-    int e_pos = mapmap[e];
-    int diff = abs(s_pos - e_pos);
+    int s_pos = mapmap[s]; // s의 위치
+    int e_pos = mapmap[e]; // e의 위치
+    int diff = abs(s_pos - e_pos); // s와 e의 위치 차이
 
     int L_pos = 0;
     int R_pos = 0;
 
-    if (diff == 0) {
+    if (diff == 0) { // s와 e가 같은 위치에 있을 때
         return abs(s - e);
     }
     else {
@@ -76,24 +43,12 @@ int main(int argc, char** argv) {
 
     int test_case;
     int T;
-    vector<int> map[10001];
-    vector<int> map_position[142];
-    int mapmap[10001];
-    int map_count = 1;
+
+    int mapmap[10001]; // 1 ~ 10000까지의 위치를 저장하는 배열
+    int map_count = 1; // mapmap의 인덱스
 
     for (int i = 1; i <= 200; i++) {
         for (int j = 1; j <= i; j++) {
-            // if (i != j && map_count + 1 <= 10000) {
-            //     map[map_count].push_back(map_count + 1);
-            //     map[map_count + 1].push_back(map_count);
-            // }
-            // if (map_count + i <= 10000) {
-            //     map[map_count].push_back(map_count + i);
-            // }
-            // if (map_count + i + 1 <= 10000) {
-            //     map[map_count].push_back(map_count + i + 1);
-            // }
-            // map_position[i].push_back(map_count);
             mapmap[map_count] = i;
             map_count++;
             if (map_count > 10000) {
@@ -104,14 +59,6 @@ int main(int argc, char** argv) {
             break;
         }
     }
-
-    // for (int i = 1 ; i <= 141; i++) {
-    //     cout << i << " : ";
-    //     for (auto j : map_position[i]) {
-    //         cout << j << " ";
-    //     }
-    //     cout << endl;
-    // }
 
     cin >> T;
 
@@ -124,19 +71,11 @@ int main(int argc, char** argv) {
             continue;
         }
 
-        // int count = BFS(map, min(s, e), max(s, e));
-        // cout << "#" << test_case << " " << count << endl;
-        // if (mapmap[s] == mapmap[e]) {
-        //     cout << "#" << test_case << " " << abs(s-e) << endl;
-        // }
-        // else {
-        //     cout << "#" << test_case << " " << abs(mapmap[e] - mapmap[s]) << endl;
-        // }
         if (s < e) {
-            cout << "#" << test_case << " " << Pyenbup(s, e, mapmap) << endl;
+            cout << "#" << test_case << " " << algorithm(s, e, mapmap) << endl;
         }
         else {
-            cout << "#" << test_case << " " << Pyenbup(e, s, mapmap) << endl;
+            cout << "#" << test_case << " " << algorithm(e, s, mapmap) << endl;
         }
     }
     return 0;
